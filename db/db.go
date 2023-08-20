@@ -10,6 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// DB接続のための関数
 func NewDB() *gorm.DB {
 	// 環境変数を取得しにいく
 	if os.Getenv("GO_ENV") == "dev" {
@@ -31,4 +32,12 @@ func NewDB() *gorm.DB {
 	}
 	fmt.Println("connectted")
 	return db
+}
+
+// DBをクローズするための関数
+func CloseDB(db *gorm.DB) {
+	sqlDB, _ := db.DB()
+	if err := sqlDB.Close(); err != nil {
+		log.Println(err)
+	}
 }
