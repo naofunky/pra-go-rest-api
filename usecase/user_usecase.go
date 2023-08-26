@@ -12,8 +12,8 @@ import (
 
 // ユーザー関係のユースケースを行うためのインターフェース
 type IUserUsecase interface {
-	Signup(user model.User) (model.UserResponse, error)
-	Login(user model.User) (string, error)
+	SignUp(user model.User) (model.UserResponse, error)
+	LogIn(user model.User) (string, error)
 }
 
 // ユーザー関係のユースケースを行うための構造体
@@ -27,7 +27,7 @@ func NewUserUsecase(ur repository.IUserRepository) IUserUsecase {
 }
 
 // サインイン処理を行うメソッド
-func (uu *userUsecase) Signup(user model.User) (model.UserResponse, error) {
+func (uu *userUsecase) SignUp(user model.User) (model.UserResponse, error) {
 	// パスワードをハッシュ化
 	hash, err := bcrypt.GenerateFromPassword([]byte(user.Password), 10)
 	if err != nil {
@@ -48,7 +48,7 @@ func (uu *userUsecase) Signup(user model.User) (model.UserResponse, error) {
 }
 
 // ログイン処理を行うメソッド
-func (uu *userUsecase) Login(user model.User) (string, error) {
+func (uu *userUsecase) LogIn(user model.User) (string, error) {
 	// クライアントから送られてきた情報がDBに存在するか確認
 	storedUser := model.User{}
 	if err := uu.ur.GetUserByEmail(&storedUser, user.Email); err != nil {
