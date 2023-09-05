@@ -13,7 +13,7 @@ type ITasksRepository interface {
 	GetAllTasks(tasks *[]model.Task, userId uint) error
 	GetTaskByID(task *model.Task, userId uint, taskId uint) error
 	CreateTask(task *model.Task) error
-	UpadateTask(task *model.Task, userId uint, taskId uint) error
+	UpdateTask(task *model.Task, userId uint, taskId uint) error
 	DeleteTask(userId uint, taskId uint) error
 }
 
@@ -52,7 +52,7 @@ func (tr *tasksRepository) CreateTask(task *model.Task) error {
 }
 
 // タスクを更新するメソッド
-func (tr *tasksRepository) UpadateTask(task *model.Task, userId uint, taskId uint) error {
+func (tr *tasksRepository) UpdateTask(task *model.Task, userId uint, taskId uint) error {
 	result := tr.db.Model(task).Clauses(clause.Returning{}).Where("user_id=? AND id=?", userId, taskId).Update("title", task.Title)
 	if result != nil {
 		return result.Error
