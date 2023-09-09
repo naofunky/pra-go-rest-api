@@ -25,7 +25,7 @@ type taskController struct {
 }
 
 // usecaseをcontrollerにDIするためのコンストラクタ
-func NewTaskContlorller(tu usecase.ITaskUsecase) ITaskController {
+func NewTaskController(tu usecase.ITaskUsecase) ITaskController {
 	return &taskController{tu}
 }
 

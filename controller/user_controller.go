@@ -23,7 +23,7 @@ type userController struct {
 }
 
 // usecaseをcontrollerにDIするためのコンストラクタ
-func NewUserContlorller(uu usecase.IUserUsecase) IUserController {
+func NewUserController(uu usecase.IUserUsecase) IUserController {
 	return &userController{uu}
 }
 
