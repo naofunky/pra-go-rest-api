@@ -37,7 +37,7 @@ func (tr *tasksRepository) GetAllTasks(tasks *[]model.Task, userId uint) error {
 
 // タスクをIDで取得するメソッド
 func (tr *tasksRepository) GetTaskByID(task *model.Task, userId uint, taskId uint) error {
-	if err := tr.db.Joins("User").Where("user_id=?, userId").First(task).Error; err != nil {
+	if err := tr.db.Joins("User").Where("user_id=?", userId).First(task, taskId).Error; err != nil {
 		return err
 	}
 	return nil
