@@ -14,7 +14,7 @@ func NewRouter(uc controller.IUserController, tc controller.ITaskController) *ec
 	e := echo.New()
 	// CORSの設定
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://localhost:3000", os.Getenv("FE_URL")},
+		AllowOrigins: []string{"http://localhost:5173", os.Getenv("FE_URL")},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept,
 			echo.HeaderAccessControlAllowHeaders, echo.HeaderXCSRFToken},
 		AllowMethods:     []string{"GET", "PUT", "POST", "DELETE"},
