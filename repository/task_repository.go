@@ -29,7 +29,7 @@ func NewTasksRepository(db *gorm.DB) ITasksRepository {
 
 // 全てのタスクを一覧で取得するメソッド
 func (tr *tasksRepository) GetAllTasks(tasks *[]model.Task, userId uint) error {
-	if err := tr.db.Joins("User").Where("user_id=?", userId).Order("create_at").Find(tasks).Error; err != nil {
+	if err := tr.db.Joins("User").Where("user_id=?", userId).Order("created_at").Find(tasks).Error; err != nil {
 		return err
 	}
 	return nil
